@@ -90,6 +90,16 @@ const promptUser = () =>
             name: "tests",
             message: 'How to run tests (eg: npm run test): ',
         },
+        {
+            type: "input",
+            name: "gitHubUser",
+            message: 'Your GitHub username: ',
+        },
+        {
+            type: "input",
+            name: "email",
+            message: 'Your email address: ',
+        },
     ]);
 
 const generateHTML = (answers) => {
@@ -120,14 +130,15 @@ const generateHTML = (answers) => {
 # ${answers.title}
 
 ## Table of Contents
-* [installation instructions](#installation)
 * [Description of application](#description)
+* [Installation instructions](#installation)
 * [Usage of application](#usage)
-* [License](#license)
-* [How to contribute](#how-to-contribute)
-* [application Tests](#tests-instructions)
-* [application contributors](#contributors)
-* [link to deployed application](#link-to-deployed-application)
+${licenseInfo ? "* [License](#license)" : ""}
+${contributionInstructions ? "* [How to contribute](#how-to-contribute)" : ""}
+* [Application Tests](#tests-instructions)
+* [Questions](#questions)
+* [Application contributors](#contributors)
+* [Link to deployed application](#link-to-deployed-application)
 * [Screenshots of deployed application](#screenshots)
 
 
@@ -148,6 +159,10 @@ ${contributionInstructions}
 
 ## Tests instructions
 ${answers.tests}
+
+## Questions
+- Message me at: [${answers.gitHubUser}](https://github.com/${answers.gitHubUser})
+- Email me at: [${answers.email}](mailto:${answers.email})
 
 ## Contributors
 ${contributors}
