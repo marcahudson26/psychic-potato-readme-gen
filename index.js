@@ -27,6 +27,11 @@ const promptUser = () =>
             message: 'The title of your project: ',
         },
         {
+            type: "editor",
+            name: "description",
+            message: 'A description of your project: ',
+        },
+        {
             type: "list",
             name: "license",
             choices: [
@@ -61,7 +66,11 @@ const generateHTML = (answers) => {
 # ${answers.title}
 
 ## Table of Contents
+* [Description of application](#description)
 * [License](#license)
+
+## Description
+${answers.description}
 
 ${licenseInfo}
 
