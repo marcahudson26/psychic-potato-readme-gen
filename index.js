@@ -63,6 +63,29 @@ const promptUser = () =>
             message: 'Select a license: ',
         },
         {
+            type: "confirm",
+            name: "allowContribution",
+            message: 'Can others contribute?',
+        },
+        {
+            type: "confirm",
+            name: "prefillContribution",
+            message: 'Use prefilled contribution instructions?',
+        },
+        {
+            type: "editor",
+            name: "contributing",
+            message: 'Write instructions for how others can contribute: ',
+            when: (answers) => {
+                return answers.allowContribution && !answers.prefillContribution
+            }
+        },
+        {
+            type: "input",
+            name: "contributors",
+            message: 'Add list of existing contributors (separated by comma): ',
+        },
+        {
             type: "input",
             name: "tests",
             message: 'How to run tests (eg: npm run test): ',
@@ -71,10 +94,26 @@ const promptUser = () =>
 
 const generateHTML = (answers) => {
     const hasLicense = answers.license !== "None";
+
+    const contributors = answers.contributors.split(",")
+        .map(name => name.trim().replace(/  +/g, " "))
+        .map(name => `- ${name}`)
+        .join("\r\n");
     const licenseName = encodeURIComponent(answers.license).replaceAll("-", "%E2%80%91");
+
     const licenseInfo = hasLicense
         ? `## License\r\n[${answers.license}](${licenses[answers.license]})`
         : ""
+
+    let contributionInstructions = "";
+    if (answers.allowContribution) {
+        contributionInstructions = "## How to contribute\r\n"
+        if (answers.prefillContribution) {
+            contributionInstructions += `Please refer to each project's style and contribution guidelines for submitting patches and additions. In general, we follow the "fork-and-pull" Git workflow.\r\n- Fork the repo on GitHub\r\n- Clone the project to your own machine\r\n- Commit changes to your own branch\r\n- Push your work back up to your fork\r\n- Submit a Pull request so that we can review your changes\r\n- NOTE: Be sure to merge the latest from "upstream" before making a pull request!`
+        } else {
+            contributionInstructions += answers.contributing.replaceAll("\n", "\r\n")
+        }
+    }
 
     return `
 ![License](https://img.shields.io/:License-${licenseName}-green.svg)
@@ -85,7 +124,9 @@ const generateHTML = (answers) => {
 * [Description of application](#description)
 * [Usage of application](#usage)
 * [License](#license)
+* [How to contribute](#how-to-contribute)
 * [application Tests](#tests-instructions)
+* [application contributors](#contributors)
 * [link to deployed application](#link-to-deployed-application)
 * [Screenshots of deployed application](#screenshots)
 
@@ -103,8 +144,13 @@ ${answers.usage}
 
 ${licenseInfo}
 
+${contributionInstructions}
+
 ## Tests instructions
 ${answers.tests}
+
+## Contributors
+${contributors}
 
 ## Link to deployed application
 *** fill in here ***
