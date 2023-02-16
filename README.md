@@ -52,4 +52,4 @@ Please refer to each project's style and contribution guidelines for submitting 
 *** fill in here ***
 
 ## Screenshots
-![video](/assets/video-instructions.mp4)
+![video](./assets/video-instructions.mov)
