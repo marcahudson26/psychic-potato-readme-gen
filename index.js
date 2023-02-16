@@ -32,6 +32,16 @@ const promptUser = () =>
             message: 'A description of your project: ',
         },
         {
+            type: "input",
+            name: "installation",
+            message: 'How to install the app (eg: node index.js): ',
+        },
+        {
+            type: "input",
+            name: "usage",
+            message: 'How to use the application: ',
+        },
+        {
             type: "list",
             name: "license",
             choices: [
@@ -52,6 +62,11 @@ const promptUser = () =>
             ],
             message: 'Select a license: ',
         },
+        {
+            type: "input",
+            name: "tests",
+            message: 'How to run tests (eg: npm run test): ',
+        },
     ]);
 
 const generateHTML = (answers) => {
@@ -66,13 +81,30 @@ const generateHTML = (answers) => {
 # ${answers.title}
 
 ## Table of Contents
+* [installation instructions](#installation)
 * [Description of application](#description)
+* [Usage of application](#usage)
 * [License](#license)
+* [application Tests](#tests-instructions)
+* [link to deployed application](#link-to-deployed-application)
+* [Screenshots of deployed application](#screenshots)
+
 
 ## Description
 ${answers.description}
 
+## Installation
+\`\`\`
+${answers.installation}
+\`\`\`
+
+## Usage
+${answers.usage}
+
 ${licenseInfo}
+
+## Tests instructions
+${answers.tests}
 
 ## Link to deployed application
 *** fill in here ***
