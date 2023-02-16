@@ -176,7 +176,7 @@ ${contributors}
 ## Link to deployed application
 *** fill in here ***
 
-## Screenshots
+## Screenshots/ Videos
 *** fill in here ***
 `
 }

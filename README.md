@@ -8,7 +8,6 @@
 * [Usage of application](#usage)
 * [License](#license)
 * [How to contribute](#how-to-contribute)
-
 * [Questions](#questions)
 * [Application contributors](#contributors)
 * [Link to deployed application](#link-to-deployed-application)
@@ -44,7 +43,7 @@ Please refer to each project's style and contribution guidelines for submitting 
 
 ## Questions
 - Message me at: [marcahudson26](https://github.com/marcahudson26)
-- Email me at: [marchudson2601@outlook.com](mailto:marchudson2601@outlook.com)
+- Email me at: [marchudson2601@gmail.com](mailto:marchudson2601@gmail.com)
 
 ## Contributors
 - Marc Hudson
@@ -53,4 +52,4 @@ Please refer to each project's style and contribution guidelines for submitting 
 *** fill in here ***
 
 ## Screenshots
-*** fill in here ***
+![video](/assets/video-instructions.mp4)
