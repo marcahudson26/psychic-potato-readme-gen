@@ -52,4 +52,4 @@ Please refer to each project's style and contribution guidelines for submitting 
 *** fill in here ***
 
 ## Screenshots
-![video](./assets/video-instructions.mov)
+https://user-images.githubusercontent.com/116087781/219232698-6066fbfc-4656-4513-81d7-43b62bdc4bc9.mov
