@@ -52,4 +52,8 @@ Please refer to each project's style and contribution guidelines for submitting 
 https://github.com/marcahudson26/psychic-potato-readme-gen
 
 ## Screenshots
-https://user-images.githubusercontent.com/116087781/219232698-6066fbfc-4656-4513-81d7-43b62bdc4bc9.mov
+
+
+https://user-images.githubusercontent.com/116087781/219247308-50f49471-04b2-4c7c-b8c6-9807757d7d2f.mov
+
+
