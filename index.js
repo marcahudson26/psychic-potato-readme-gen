@@ -34,12 +34,12 @@ const promptUser = () =>
         {
             type: "input",
             name: "installation",
-            message: 'How to install the app (eg: node index.js): ',
+            message: 'How to install the app (eg: npm install): ',
         },
         {
             type: "input",
             name: "usage",
-            message: 'How to use the application: ',
+            message: 'How to use the application: (eg: node index.js)',
         },
         {
             type: "list",
@@ -125,6 +125,11 @@ const generateHTML = (answers) => {
         }
     }
 
+    let testInstructions = "";
+    if (answers.tests) {
+        testInstructions = `## Tests instructions\r\n${answers.tests}`;
+    }
+
     return `
 ![License](https://img.shields.io/:License-${licenseName}-green.svg)
 # ${answers.title}
@@ -135,7 +140,7 @@ const generateHTML = (answers) => {
 * [Usage of application](#usage)
 ${licenseInfo ? "* [License](#license)" : ""}
 ${contributionInstructions ? "* [How to contribute](#how-to-contribute)" : ""}
-* [Application Tests](#tests-instructions)
+${answers.tests ? "* [Application Tests](#tests-instructions)" : ""}
 * [Questions](#questions)
 * [Application contributors](#contributors)
 * [Link to deployed application](#link-to-deployed-application)
@@ -151,14 +156,15 @@ ${answers.installation}
 \`\`\`
 
 ## Usage
+\`\`\`
 ${answers.usage}
+\`\`\`
 
 ${licenseInfo}
 
 ${contributionInstructions}
 
-## Tests instructions
-${answers.tests}
+${testInstructions}
 
 ## Questions
 - Message me at: [${answers.gitHubUser}](https://github.com/${answers.gitHubUser})
