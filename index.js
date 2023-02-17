@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import fs from 'fs';
 import util from 'util';
 
+// this section is all the links all the available licenses documentation
 const licenses = {
     "MIT License": "https://choosealicense.com/licenses/mit",
     "Apache License 2.0": "https://choosealicense.com/licenses/apache-2.0",
@@ -18,6 +19,7 @@ const licenses = {
     "The Unlicense": "https://choosealicense.com/licenses/unlicense",
 }
 
+// this is to prompt the user and with available answers 
 const writeFileAsync = util.promisify(fs.writeFile);
 const promptUser = () =>
     inquirer.prompt([
@@ -102,35 +104,40 @@ const promptUser = () =>
         },
     ]);
 
+// this checks if the user has selected no license 
 const generateHTML = (answers) => {
     const hasLicense = answers.license !== "None";
 
+    // this normalizes the data of the contributor answer so it displays correctly on the read me 
     const contributors = answers.contributors.split(",")
         .map(name => name.trim().replace(/  +/g, " "))
         .map(name => `- ${name}`)
         .join("\r\n");
     const licenseName = encodeURIComponent(answers.license).replaceAll("-", "%E2%80%91");
 
+    // this checks it the user has selected a license if they have the link will be linked to the valid documentation
     const licenseInfo = hasLicense
         ? `## License\r\n[${answers.license}](${licenses[answers.license]})`
         : ""
-
+    // this checks if the if the user wants to add contributions 
     let contributionInstructions = "";
     if (answers.allowContribution) {
         contributionInstructions = "## How to contribute\r\n"
+        // if the user selects prefill contribution section this is the prefill information
         if (answers.prefillContribution) {
             contributionInstructions += `Please refer to each project's style and contribution guidelines for submitting patches and additions. In general, we follow the "fork-and-pull" Git workflow.\r\n- Fork the repo on GitHub\r\n- Clone the project to your own machine\r\n- Commit changes to your own branch\r\n- Push your work back up to your fork\r\n- Submit a Pull request so that we can review your changes\r\n- NOTE: Be sure to merge the latest from "upstream" before making a pull request!`
         } else {
             contributionInstructions += answers.contributing.replaceAll("\n", "\r\n")
         }
     }
-
+    // this control's the test instructions
     let testInstructions = "";
     if (answers.tests) {
         testInstructions = `## Tests instructions\r\n${answers.tests}`;
     }
 
     return `
+    
 ![License](https://img.shields.io/:License-${licenseName}-green.svg)
 # ${answers.title}
 
@@ -180,6 +187,8 @@ ${contributors}
 *** fill in here ***
 `
 }
+
+// this prompt the user 
 promptUser()
     .then((answers) => writeFileAsync('README.md', generateHTML(answers)))
     .then(() => console.log('Successfully wrote to README.md'))
