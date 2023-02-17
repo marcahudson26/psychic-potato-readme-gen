@@ -19,7 +19,7 @@ const licenses = {
     "The Unlicense": "https://choosealicense.com/licenses/unlicense",
 }
 
-// this is to prompt the user and with available answers 
+// this is to prompt the user and with available questions 
 const writeFileAsync = util.promisify(fs.writeFile);
 const promptUser = () =>
     inquirer.prompt([
@@ -137,7 +137,7 @@ const generateHTML = (answers) => {
     }
 
     return `
-    
+
 ![License](https://img.shields.io/:License-${licenseName}-green.svg)
 # ${answers.title}
 
