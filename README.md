@@ -24,9 +24,9 @@ npm install
 ```
 
 ## Usage
-```
+
 node index.js in the terminal. then follow the instructions in the terminal, when a section with a lot of input is need the not pad will pop up for the input once inputted cross and save and the input will be stored, once complete the read me will be generated. 
-```
+
 
 ## License
 [MIT License](https://choosealicense.com/licenses/mit)
