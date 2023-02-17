@@ -15,7 +15,8 @@
 
 
 ## Description
-An application to generate a readme based on user input
+This app is a read-me generator, which dynamically makes a read the readme will consist of a badge of the license at the top of the page, the title, a table of contents  description of usage, installation instructions, usage instructions, usage, licenses with links to the documentation, how to contribute with an optional place holder,  questions section with links on how to contact,
+a contributors section with a list of contributors, a Link to GitHub repo and screenshot
 
 ## Installation
 ```
@@ -24,7 +25,7 @@ npm install
 
 ## Usage
 ```
-node index.js
+node index.js in the terminal. then follow the instructions in the terminal, when a section with a lot of input is need the not pad will pop up for the input once inputted cross and save and the input will be stored, once complete the read me will be generated. 
 ```
 
 ## License
